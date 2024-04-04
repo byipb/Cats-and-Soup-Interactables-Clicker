@@ -39,5 +39,4 @@ This Python script is designed to allow you to automatically detect, find and cl
 GNU General Public License (GPL)
 
 ## Author
-Brandon
-Vivian
+Brandon, Vivian
