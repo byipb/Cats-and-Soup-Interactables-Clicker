@@ -14,23 +14,23 @@ def is_admin():
 current_dir = os.getcwd()
 
 # Create a relative path to the folder with images
-slugPath = os.path.join(current_dir, 'images', 'slug.png')
-jarFairyPath = os.path.join(current_dir, 'images', 'jarfairy.png')
-giftPath = os.path.join(current_dir, 'images', 'giftBubble.png')
+slug_path = os.path.join(current_dir, 'images', 'slug.png')
 frogPath = os.path.join(current_dir, 'images', 'frog.png')
-butterflyPath = os.path.join(current_dir, 'images', 'butterfly.png')
-upgradePath = os.path.join(current_dir, 'images', 'upgrade.png')
+jar_fairy_path = os.path.join(current_dir, 'images', 'jar_fairy.png')
+gift_path = os.path.join(current_dir, 'images', 'gift.png')
+butterfly_path = os.path.join(current_dir, 'images', 'butterfly.png')
+upgrade_path = os.path.join(current_dir, 'images', 'upgrade.png')
 
 # Active state
 active = True
 
 def main():
     # Counters for all the interactables
-    slugsClaimed = 0
-    jarsClaimed = 0
-    giftsClaimed = 0
-    frogsClaimed = 0
-    butterfliesClaimed = 0
+    slugs_claimed = 0
+    jars_claimed = 0
+    gifts_claimed = 0
+    frogs_claimed = 0
+    butterflies_claimed = 0
 
     # Record the start time
     start_time = time.perf_counter()
@@ -40,40 +40,40 @@ def main():
     try:
         while is_admin() and active:
             # Find slug by image that is provided and click it
-            findSlug = py.locateCenterOnScreen(slugPath, confidence=0.9)
-            if findSlug is not None:
-                py.click(findSlug)
-                time.sleep(1)
+            find_slug = py.locateCenterOnScreen(slug_path, confidence=0.9)
+            if find_slug is not None:
+                py.click(find_slug)
+                time.sleep(3)
                 py.click(x=1280, y=715)
                 time.sleep(1)
                 py.click(x=1280, y=807)
-                slugsClaimed+=1
+                slugs_claimed+=1
 
             # Find frog by image, click it and get rewards
-            findFrog = py.locateCenterOnScreen(frogPath, confidence=0.9)
-            if findFrog is not None:
+            find_frog = py.locateCenterOnScreen(frogPath, confidence=0.9)
+            if find_frog is not None:
                 time.sleep(1)
-                py.click(findFrog)
-                time.sleep(1)
+                py.click(find_frog)
+                time.sleep(3)
                 py.click(x=1280, y=715)
                 time.sleep(1)
                 py.click(x=1280, y=807)
-                frogsClaimed+=1
+                frogs_claimed+=1
 
             # Find Jar Fairy by image, click it and get rewards
-            findJarFairy = py.locateCenterOnScreen(jarFairyPath, confidence=0.9)
-            if findJarFairy is not None:
+            find_jar_fairy = py.locateCenterOnScreen(jar_fairy_path, confidence=0.9)
+            if find_jar_fairy is not None:
                 time.sleep(0.3)
-                py.click(findJarFairy)
+                py.click(find_jar_fairy)
                 time.sleep(0.3)
                 py.click(x=1323, y=944)
-                jarsClaimed+=1
+                jars_claimed+=1
 
             # Find gift by image that is provided and click said gift
-            findGift = py.locateCenterOnScreen(giftPath, confidence=0.9)
-            if findGift is not None:
+            find_gift = py.locateCenterOnScreen(gift_path, confidence=0.9)
+            if find_gift is not None:
                 time.sleep(0.3)
-                py.click(findGift)
+                py.click(find_gift)
                 time.sleep(5)
                 # Click 1/3 gift (middle gift)
                 py.click(x=1280, y=848)
@@ -83,18 +83,18 @@ def main():
                 # Click again to exit gift menu
                 time.sleep(1)
                 py.click(x=1280, y=1030)
-                giftsClaimed+=1
+                gifts_claimed+=1
 
             # Find butterfly by image, click it and get rewards
-            findButterfly = py.locateCenterOnScreen(butterflyPath, confidence=0.95)
-            if findButterfly is not None:
-                time.sleep(0.3)
-                py.click(findButterfly)
-                time.sleep(0.3)
+            find_butterfly = py.locateCenterOnScreen(butterfly_path, confidence=0.95)
+            if find_butterfly is not None:
+                time.sleep(0.5)
+                py.click(find_butterfly)
+                time.sleep(3)
                 py.click(x=1280, y=715)
                 time.sleep(1)
                 py.click(x=1280, y=807)
-                butterfliesClaimed+=1
+                butterflies_claimed+=1
 
             # Function to hold mouse click until image disappears
             def hold_mouse_until_image_gone(image_path):
@@ -130,7 +130,7 @@ def main():
                     pass
 
             # Call the function with the relative path to the image
-            hold_mouse_until_image_gone(upgradePath)
+            hold_mouse_until_image_gone(upgrade_path)
 
     # End result of how long the script was running for and how many interactables were clicked aka claimed
     except KeyboardInterrupt:
@@ -147,7 +147,7 @@ def main():
 
         print("You have been searching for interactables for: {:.0f} hours, {:.0f} minutes, {:.2f} seconds".format(hours, minutes, seconds))
 
-        counters = {"Slugs": slugsClaimed, "Jars": jarsClaimed, "Gifts": giftsClaimed, "Frogs": frogsClaimed, "Butterflies ": butterfliesClaimed}
+        counters = {"Slugs": slugs_claimed, "Jars": jars_claimed, "Gifts": gifts_claimed, "Frogs": frogs_claimed, "Butterflies ": butterflies_claimed}
 
         for message, counter in counters.items():
             print(f"{message}: {counter}")
