@@ -14,10 +14,8 @@ def is_admin():
 current_dir = os.getcwd()
 
 # Create a relative path to the folder with images
-slug_path = os.path.join(current_dir, 'images', 'ingame_slug.png')
-cameraPath = os.path.join(current_dir, 'images', 'camera.png')
-menuPath = os.path.join(current_dir, 'images', 'menuRed.png')
-frogPath = os.path.join(current_dir, 'images', 'frog.png')
+slug_path = os.path.join(current_dir, 'images', 'slug.png')
+frog_path = os.path.join(current_dir, 'images', 'frog.png')
 jar_fairy_path = os.path.join(current_dir, 'images', 'jar_fairy.png')
 gift_path = os.path.join(current_dir, 'images', 'gift.png')
 butterfly_path = os.path.join(current_dir, 'images', 'butterfly.png')
@@ -54,7 +52,7 @@ def main():
                 slugs_claimed+=1
 
             # Find frog by image, click it and get rewards
-            find_frog = py.locateCenterOnScreen(frogPath, confidence=0.9)
+            find_frog = py.locateCenterOnScreen(frog_path, confidence=0.9)
             if find_frog is not None:
                 time.sleep(1)
                 py.click(find_frog)
